@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 
@@ -96,7 +97,7 @@
                         <div class="user-comment">
                       <div class="author">
                         <div class="profile-pic">
-                          <img src="../images/author.svg" alt="" />
+                          <img src="{% static 'images/author.svg' %}" alt="" />
                         </div>
                         <div class="details">
                           <p>{{ comment.name }}</p>
@@ -136,6 +137,24 @@
                             </form>
                         </div>
                       </div>
+                            {% for reply in comment.replies.all %}
+                                <div class="public-reply">
+                                  <div class="author">
+                                    <div class="profile-pic">
+                                      <img src="{% static 'images/author.svg' %}" alt="" />
+                                    </div>
+                                    <div class="details">
+                                      <p>{{ reply.name }}</p>
+                                      <small>{{ reply.date|date}}</small>
+                                    </div>
+                                  </div>
+                                  <div class="comment">
+                                    <p>
+                                        {{ reply.content}}
+                                    </p>
+                                  </div>
+                                </div>
+                            {% endfor %}
                     </div>
                     {% endfor %}
                     <!-- user comment end -->
