@@ -26,37 +26,43 @@
                 {{ subscribe_form }}
               <button class="btn btn-primary">Subscribe</button>
             </form>
+              {% if subscribe_successful %}
+                    <div>
+                        <p>Subscribed Successfully</p>
+                    </div>
+                {% endif %}
           </div>
         </center>
       </div>
     </main>
-    <section class="sp">
-      <div class="container">
-        <div class="grid-2">
-          <div class="post-img">
-            <img src="images/post.png" alt="" />
-          </div>
-          <div class="post-content">
-            <div class="cetagory">
-              <p>Category name</p>
-            </div>
-            <h1>
-              Lorem ipsum began as scrambled, nonsensical Latin derived from
-              Cicero's 1st-century BC text.
-            </h1>
-            <p class="des">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure
-              ullam animi repellat non ut delectus culpa! Iste quia corporis
-              illum doloribus facilis quo totam eveniet sapiente odit
-              cupiditate? Cumque, nam?
-            </p>
-            <a class="learn" href="#"
-              >Learn more <span class="material-icons"> trending_flat </span></a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+
+    {% if featured_post %}
+           <section class="sp">
+              <div class="container">
+                  <a href="{% url 'post_page' featured_post.slug %}">
+                    <div class="grid-2">
+                      <div class="post-img">
+                        <img src="{{ featured_post.image.url }}" alt="" />
+                      </div>
+                      <div class="post-content">
+                        <div class="cetagory">
+                          <p>{{ featured_post.tags.first }}</p>
+                        </div>
+                        <h1>
+                            {{ featured_post.title}}
+                        </h1>
+                        <p class="des">
+                            {{ featured_post.content|truncatechars:200 }}
+                        </p>
+                        <a class="learn" href="{% url 'post_page' featured_post.slug %}"
+                          >Learn more <span class="material-icons"> trending_flat </span></a>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+            </section>
+    {% endif %}
+
     <section class="sp">
       <div class="container">
         <h1 class="sec-title">Top blogs</h1>
@@ -75,10 +81,10 @@
                         </h3>
                         <div class="author">
                           <div class="profile-pic">
-                            <img src="images/author.svg" alt="" />
+                            <img src="{{ post.author.profile.profile_image.url }}" alt="" />
                           </div>
                           <div class="details">
-                            <p>Author name</p>
+                            <p>{{ post.author.username}}</p>
                             <small>{{ post.last_update|date}}</small>
                           </div>
                         </div>
@@ -114,10 +120,10 @@
                         </h3>
                         <div class="author">
                           <div class="profile-pic">
-                            <img src="images/author.svg" alt="" />
+                            <img src="{{ post.author.profile.profile_image.url }}" alt="" />
                           </div>
                           <div class="details">
-                            <p>Author name</p>
+                            <p>{{ post.author.username}}</p>
                             <small>{{ post.last_update|date}}</small>
                           </div>
                         </div>

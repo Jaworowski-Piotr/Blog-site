@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Tag, Comments
+from .models import Post, Tag, Comments, Subscribe, Profile
 
 
 # Register your models here.
@@ -15,3 +15,5 @@ class TagAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comments)
+admin.site.register(Subscribe)
+admin.site.register(Profile)
