@@ -9,15 +9,20 @@
       <div class="container">
         <center>
           <div class="search-bar">
-            <input type="text" placeholder="Search" />
-            <div class="animated-search" onclick="searchbar()">
-              <i class="uil uil-search"></i>
-            </div>
+              <label>
+                  <input type="text" placeholder="Search" />
+              </label>
+              <label>
+                    <input type="text" placeholder="Search" />
+                </label>
+                <a href="{% url 'search' %}" class="animated-search" onclick="{# searchbar() #}">
+                    <i class="uil uil-search"></i>
+                </a>
           </div>
           <div class="typo">
-            <h1 class="title">Peter's Page</h1>
+            <h1 class="title">{{ website_meta.title }}</h1>
             <p>
-              Lorem ipsum
+                {{ website_meta.description }}
             </p>
           </div>
           <div class="newsletter">
