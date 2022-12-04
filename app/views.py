@@ -39,6 +39,7 @@ def index(request):
 def tag_page(request, slug):
     tag = Tag.objects.get(slug=slug)
     tags = Tag.objects.all()
+    import pdb;pdb.set_trace()
     top_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-view_count')[:3]
     recent_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-last_update')[:3]
     context = {
